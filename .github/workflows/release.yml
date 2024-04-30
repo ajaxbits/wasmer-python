@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
         target:
           - id: 'linux-amd64'
             os: 'ubuntu-latest'
@@ -179,7 +179,7 @@ jobs:
     name: Release
     strategy:
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
         target:
           - id: 'linux-amd64'
             os: 'ubuntu-latest'
@@ -229,12 +229,12 @@ jobs:
           do
               echo -e "${wheel}\t$(basename ${wheel})\tapplication/x-pywheel+zip"
           done | tee wheels
-          echo ::set-output name=wheels::wheels
+          echo "name=$(<wheels)" >> $GITHUB_OUTPUT
 
       - name: Set current Python version
         shell: bash
         run: |
-          echo "3.11" > .python-version
+          echo "3.12" > .python-version
 
       - name: Set up Python ${{ matrix.python }} (amd64)
         if: matrix.target.id != 'linux-aarch64'

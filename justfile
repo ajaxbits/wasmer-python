@@ -6,7 +6,7 @@ prelude:
 	pip3 install virtualenv
 	virtualenv .env
 	if test -d .env/bin/; then source .env/bin/activate; else source .env/Scripts/activate; fi
-	pip3 install maturin==0.14.17 pytest pytest-benchmark twine pdoc
+	pip3 install maturin==1.5.1 pytest pytest-benchmark twine pdoc
 
 	which maturin
 	maturin --version
